@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Twenty by HTML5 UP</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/log/styles.css">
+
+</head>
+<body class="index">
+<div class="tixing"></div>
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+
+        <h1 id="logo"><img src="images/1478708798_631013.png"></h1>
+        <nav id="nav">
+            <ul>
+                <li class="current"><a href="index.html" class="welcome">欢迎来到,都说!</a></li>
+                <li class="submenu">
+                <li><a href="" class="button special">注册</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <header>
+                <h2 style="font-family: '微软雅黑'">&nbsp;都&nbsp;&nbsp;说&nbsp;</h2>
+            </header>
+            <p style="font-size: 16px;font-family: '微软雅黑'">一个人必须知道该说什么， 一个人必须知道什么时候说<br> 一个人必须知道对谁说， 一个人必须知道怎么说</p>
+            <footer>
+                <ul class="buttons vertical">
+                    <li><a class="button fit scrolly">&nbsp;登&nbsp;&nbsp;&nbsp;录&nbsp;</a></li>
+                </ul>
+            </footer>
+
+        </div>
+        <div class="fan">
+            <div class="head"><a>X</a></div>
+            <div class="login">
+                <h4>用户登录</h4>
+
+                <div class="form-group">
+                    <input required="required" class="form-control userr"/>
+                    <label class="form-label">用户名 </label>
+
+                    <p class="userr_yann" style="font-size: 12px;margin: 0;padding: 0">&nbsp;</p>
+                </div>
+                <div class="form-group">
+                    <input type="password" required="required" class="form-control passs"/>
+                    <label class="form-label">密　码</label>
+
+                    <p class="paddd_yann" style="font-size: 12px;margin: 0;padding: 0">&nbsp;</p>
+                </div>
+                <button class="floating-btn logg"><i class="icon-arrow"></i></button>
+            </div>
+        </div>
+        <div class="sign">
+            <div class="headd"><a>X</a></div>
+            <div class="login">
+                <h4>用户注册</h4>
+
+                <div class="form-group">
+                    <input required="required" class="form-control user"/>
+                    <label class="form-label">用户名 </label>
+
+                    <p class="user_yan" style="font-size: 12px;margin: 0;padding: 0">*用户名不要使用特殊字符*</p>
+                </div>
+                <div class="form-group">
+                    <input type="password" required="required" class="form-control pass"/>
+                    <label class="form-label">密&nbsp;&nbsp;&nbsp;码</label>
+
+                    <p class="padd_yan" style="font-size: 12px;margin: 0;padding: 0">*密码长度不能超过10位*</p>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="touxiang" id="tou" style="font-size: 11px">
+                    <label class="form-label">头&nbsp;&nbsp;&nbsp;像</label>
+                </div>
+                <button class="floating-btn zhucee" style="font-family: '微软雅黑'">注册</button>
+            </div>
+        </div>
+        <div class="canvas">
+            <canvas id="Mycanvas" height="100%"></canvas>
+            <script>
+                //定义画布宽高和生成点的个数
+                var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 35;
+
+                var canvas = document.getElementById('Mycanvas');
+                canvas.width = WIDTH,
+                        canvas.height = HEIGHT;
+                var context = canvas.getContext('2d');
+                context.strokeStyle = 'rgba(0,0,0,0.2)',
+                        context.strokeWidth = 1,
+                        context.fillStyle = 'rgba(0,0,0,0.1)';
+                var circleArr = [];
+
+                //线条：开始xy坐标，结束xy坐标，线条透明度
+                function Line(x, y, _x, _y, o) {
+                    this.beginX = x,
+                            this.beginY = y,
+                            this.closeX = _x,
+                            this.closeY = _y,
+                            this.o = o;
+                }
+                //点：圆心xy坐标，半径，每帧移动xy的距离
+                function Circle(x, y, r, moveX, moveY) {
+                    this.x = x,
+                            this.y = y,
+                            this.r = r,
+                            this.moveX = moveX,
+                            this.moveY = moveY;
+                }
+                //生成max和min之间的随机数
+                function num(max, _min) {
+                    var min = arguments[1] || 0;
+                    return Math.floor(Math.random() * (max - min + 1) + min);
+                }
+                // 绘制原点
+                function drawCricle(cxt, x, y, r, moveX, moveY) {
+                    var circle = new Circle(x, y, r, moveX, moveY)
+                    cxt.beginPath()
+                    cxt.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI)
+                    cxt.closePath()
+                    cxt.fill();
+                    return circle;
+                }
+                //绘制线条
+                function drawLine(cxt, x, y, _x, _y, o) {
+                    var line = new Line(x, y, _x, _y, o)
+                    cxt.beginPath()
+                    cxt.strokeStyle = 'rgba(0,0,0,' + o + ')'
+                    cxt.moveTo(line.beginX, line.beginY)
+                    cxt.lineTo(line.closeX, line.closeY)
+                    cxt.closePath()
+                    cxt.stroke();
+
+                }
+                //初始化生成原点
+                function init() {
+                    circleArr = [];
+                    for (var i = 0; i < POINT; i++) {
+                        circleArr.push(drawCricle(context, num(WIDTH), num(HEIGHT), num(15, 2), num(10, -10) / 40, num(10, -10) / 40));
+                    }
+                    draw();
+                }
+
+                //每帧绘制
+                function draw() {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    for (var i = 0; i < POINT; i++) {
+                        drawCricle(context, circleArr[i].x, circleArr[i].y, circleArr[i].r);
+                    }
+                    for (var i = 0; i < POINT; i++) {
+                        for (var j = 0; j < POINT; j++) {
+                            if (i + j < POINT) {
+                                var A = Math.abs(circleArr[i + j].x - circleArr[i].x),
+                                        B = Math.abs(circleArr[i + j].y - circleArr[i].y);
+                                var lineLength = Math.sqrt(A * A + B * B);
+                                var C = 1 / lineLength * 7 - 0.009;
+                                var lineOpacity = C > 0.03 ? 0.03 : C;
+                                if (lineOpacity > 0) {
+                                    drawLine(context, circleArr[i].x, circleArr[i].y, circleArr[i + j].x, circleArr[i + j].y, lineOpacity);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //调用执行
+                window.onload = function () {
+                    init();
+                    setInterval(function () {
+                        for (var i = 0; i < POINT; i++) {
+                            var cir = circleArr[i];
+                            cir.x += cir.moveX;
+                            cir.y += cir.moveY;
+                            if (cir.x > WIDTH) cir.x = 0;
+                            else if (cir.x < 0) cir.x = WIDTH;
+                            if (cir.y > HEIGHT) cir.y = 0;
+                            else if (cir.y < 0) cir.y = HEIGHT;
+
+                        }
+                        draw();
+                    }, 16);
+                }
+
+            </script>
+        </div>
+    </section>
+
+
+</div>
+<!-- Scripts -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dropotron.min.js"></script>
+<script src="js/jquery.scrolly.min.js"></script>
+<script src="js/jquery.scrollgress.min.js"></script>
+<script src="js/skel.min.js"></script>
+<script src="js/util.js"></script>
+<script src="js/ie/respond.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/log/log.js"></script>
+<script src="../node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+</body>
+</html>

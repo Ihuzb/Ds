@@ -1,0 +1,89 @@
+body {
+    font-family: '微软雅黑' !important;
+}
+
+.tixing {
+    width: 300px;
+    font-size: 16px;
+    text-align: center;
+    display: none;
+    line-height: 3;
+    background: rgba(52, 40, 43, 0.5);
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.inner {
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    z-index: 10;
+    transition: all 2s;
+}
+
+.canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.fan {
+    -webkit-backface-visibility: hidden;
+    transition: all 2s;
+    position: absolute;
+    background: rgba(52, 40, 43, 0.5);
+    z-index: 10;
+    padding: 1em;
+    left: 50%;
+    top: 49%;
+    transform: translateX(-50%) translateY(-50%) rotateY(180deg);
+}
+
+.sign {
+    -webkit-backface-visibility: hidden;
+    transition: all 2s;
+    position: absolute;
+    background: rgba(52, 40, 43, 0.5);
+    z-index: 10;
+    padding: 1em;
+    left: 50%;
+    top: 49%;
+    transform: translateX(-50%) translateY(-50%) rotateY(180deg);
+}
+
+.fan .head, .sign .headd {
+    float: right;
+}
+
+.head a, .headd a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    border: 0px;
+    cursor: pointer;
+}
+
+#banner {
+    perspective: 600px;
+}
+
+.zhuan {
+    transform: rotateY(-180deg);
+}
+
+.qian {
+    transform: translateX(-50%) translateY(-50%) rotateY(0deg);
+}
+
+.touxiang {
+    transform: translateX(25px);
+}
+
+.shangchuan {
+    border: 0px !important;
+    float: right !important;
+    min-width: 0px !important;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="file" id="filee" onchange="showPreview(this)">
+<script>
+    var filee = document.querySelector("#filee")
+    //    console.log(filee)
+    function showPreview(source) {
+        var file = source.files[0]
+        var fr = new FileReader()
+        fr.onloadend = function (e) {
+            console.log(e.target.result)
+        }
+        fr.readAsDataURL(file)
+
+    }
+
+</script>
+</body>
+</html>
