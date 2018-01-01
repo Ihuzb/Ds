@@ -9,3 +9,5 @@
 - 1.下载后在目录根文件执行`npm install`下载包
 - 2.下载完毕后执行`node app.js`
 - 3.登录地址:`http://127.0.0.1:3000`
+# 静态页面地址
+http://ds.ihuzb.cn/public/
